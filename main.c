@@ -6,7 +6,7 @@
 /*   By: lvan-vlo <lvan-vlo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/07 15:53:12 by lvan-vlo       #+#    #+#                */
-/*   Updated: 2019/02/08 14:43:37 by lvan-vlo      ########   odam.nl         */
+/*   Updated: 2019/02/11 14:51:51 by lvan-vlo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int		main(int argc, char **argv)
 		{
 			ft_putendl("Error, invalid input!");
 			return (0);
+		}
+		else
+		{
+			ft_putendl("VALID");
 		}
 	}
 	return (0);

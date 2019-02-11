@@ -6,45 +6,51 @@
 /*   By: lvan-vlo <lvan-vlo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/08 13:26:44 by lvan-vlo       #+#    #+#                */
-/*   Updated: 2019/02/09 18:53:25 by lvan-vlo      ########   odam.nl         */
+/*   Updated: 2019/02/11 14:51:13 by lvan-vlo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_check_file(char *file)
+int		ft_charcount(char *p, char c, int len)
 {
-	int		end;
 	int		i;
-	int		stop;
-	int		hashtag;
-	int		nline;
+	int		x;
 
 	i = 0;
-	stop = 0;
-	hashtag = 0;
-	nline = 0;
-	end = 20;
-	while (i < end)
+	x = 0;
+	while (i < len)
 	{
-		if (file[i] == '.')
-			stop++;
-		if (file[i] == '#')
-			hashtag++;
-		if (file[i] == '\n')
-			nline++;
+		if (p[i] == c)
+			x++;
 		i++;
-		if (i == end && stop != 12 || hashtag != 4 || nline != 4)
-			return (0);
-		if (i == end && (file[i + 1] == '.' || file[i + 1] == '#'))
-		{
-			stop = 0;
-			hashtag = 0;
-			nline = 0;
-			end = end + 20;
-			i++;
-		}
 	}
-	if (file[i] == '\0')
-		return (1);
+	return (x);
+}
+
+int		ft_basic_check(char *p)
+{
+	if (ft_charcount(p, '.', 20) != 12)
+		return (0);
+	if (ft_charcount(p, '#', 20) != 4)
+		return (0);
+	if (ft_charcount(p, '\n', 20) != 4)
+		return (0);
+	return (1);
+}
+
+int		ft_check_file(char *file)
+{
+	char	*p;
+
+	p = file;
+	if (ft_basic_check(p) == 0)
+		return (0);
+	if (ft_strlen(p) > 21)
+	{
+		p = ft_strstr(file, "\n\n");
+		p = p + 2;
+		ft_check_file(p);
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: lvan-vlo <lvan-vlo@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/07 15:36:50 by twoerdem       #+#    #+#                */
-/*   Updated: 2019/02/08 13:24:13 by lvan-vlo      ########   odam.nl         */
+/*   Updated: 2019/02/11 14:34:03 by lvan-vlo      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include "./libft/libft.h"
 
 char	*ft_read_tetriminos(int fd, char *file);
+int		ft_check_file(char *file);
 
 #endif
