@@ -1,34 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_read_tetriminos.c                               :+:    :+:            */
+/*   ft_strchr_y.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: twoerdem <twoerdem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/08 13:14:36 by lvan-vlo       #+#    #+#                */
-/*   Updated: 2019/02/25 16:28:53 by twoerdem      ########   odam.nl         */
+/*   Created: 2019/02/19 16:27:07 by lvan-vlo       #+#    #+#                */
+/*   Updated: 2019/02/25 14:44:16 by twoerdem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	*ft_read_tetriminos(int fd, char *file)
+char	*ft_strchr_y(char **array, int x, char c)
 {
-	char	buf[BUFF_SIZE + 1];
-	char	*tmp;
-	int		ret;
+	int		y;
 
-	ret = 1;
-	while (ret > 0)
+	y = 0;
+	while (array[y] != NULL)
 	{
-		ret = read(fd, buf, BUFF_SIZE);
-		if (ret < 0)
-			return (NULL);
-		buf[ret] = '\0';
-		tmp = ft_strjoin(file, buf);
-		free(file);
-		file = ft_strdup(tmp);
-		free(tmp);
+		if (array[y][x] == c)
+			return (array[y]);
+		y++;
 	}
-	return (file);
+	return (NULL);
+}
+
+char	**replace_character(char **array, int c)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (array[y])
+	{
+		x = 0;
+		while (array[y][x])
+		{
+			if (array[y][x] == '#')
+				array[y][x] = c;
+			x++;
+		}
+		y++;
+	}
+	return (array);
 }
